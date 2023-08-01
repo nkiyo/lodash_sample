@@ -24,3 +24,16 @@ diffa2a1 = _.difference(a2, a1)
 console.log(diffa1a2)
 console.log(diffa2a1)
 
+// union 和集合
+unionA1a2 = _.union(a1, a2)
+console.log(unionA1a2)
+
+// intersection 積集合
+intersectionA1a2 = _.intersection(a1, a2)
+console.log(intersectionA1a2)
+
+// intersectionWith, intersectionBy もあり。unionも同様
+// xor
+// zip
+// countBy
+// SQLのjoinに近いやつは？
