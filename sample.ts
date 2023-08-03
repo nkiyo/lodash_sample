@@ -1,6 +1,6 @@
 const _ = require('lodash')
 
-// sortBy
+// TODO 別ファイルで定義する
 type User = {
   user: string;
   age: number;
@@ -16,6 +16,7 @@ type Gender = {
   gender: string;
 }
 
+// sortBy
 const users: User[] = [
   { 'user': 'fred',   'age': 48, 'gender': 1 },
   { 'user': 'barney', 'age': 36, 'gender': 2 },
@@ -64,15 +65,12 @@ console.log(countUsers)
 // SQLのjoinに近いやつ？
 
 // idを詳細情報に変換する
-// TODO もっと短く書きたい
-const idConvertedUsers: UserForView[] = users.map((e: User) => {
-  const targetGender: Gender | undefined = genders.find((e2: Gender) => e2.id === e.gender)
-  let genderStr = '-'
-  if(targetGender) {
-    genderStr = targetGender.gender
-  }
-  return {...e, 'gender': genderStr}
+// ?: Optional chaining
+// ??: Nullish coalescing operator 
+// TODO 以下のコードが理解しづらいのだとすれば、それはテストコードがないから、処理に名前がついてないから
+const idConvertedUsers: UserForView[] = users.map((u: User) => {
+  const genderStr: string = genders.find((g: Gender) => g.id === u.gender)?.gender ?? '-'
+  return {...u, 'gender': genderStr}
 })
-//idConvertedUsers = users.map((e) => { return {...e, 'gender': 'xxx'} })
 console.log(idConvertedUsers)
 
