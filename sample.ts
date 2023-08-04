@@ -69,15 +69,15 @@ console.log(countUsers);
 // ?: Optional chaining
 // ??: Nullish coalescing operator
 // TODO テストコードを書く
-function addGenderDetail(users: User[], genders: Gender[]): UserForView[] {
+export function addGenderDetail(
+  users: User[],
+  genders: Gender[]
+): UserForView[] {
   return users.map((u: User) => {
     const genderStr: string =
       genders.find((g: Gender) => g.id === u.gender)?.gender ?? "-";
     return { ...u, gender: genderStr };
   });
 }
-
 const addedUsers = addGenderDetail(users, genders);
 console.log(addedUsers);
-
-export { addGenderDetail };
