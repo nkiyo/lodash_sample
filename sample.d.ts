@@ -12,5 +12,5 @@ export type Gender = {
     id: number;
     gender: string;
 };
-declare const addGenderDetail: (users: User[], genders: Gender[]) => UserForView[];
+declare function addGenderDetail(users: User[], genders: Gender[]): UserForView[];
 export { addGenderDetail };
