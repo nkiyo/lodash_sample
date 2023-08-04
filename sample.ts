@@ -1,17 +1,17 @@
 const _ = require('lodash')
 
 // TODO 別ファイルで定義する
-type User = {
+export type User = {
   user: string;
   age: number;
   gender: number;
 }
-type UserForView = {
+export type UserForView = {
   user: string;
   age: number;
   gender: string;
 }
-type Gender = {
+export type Gender = {
   id: number;
   gender: string;
 }
@@ -67,10 +67,20 @@ console.log(countUsers)
 // idを詳細情報に変換する
 // ?: Optional chaining
 // ??: Nullish coalescing operator 
-// TODO 以下のコードが理解しづらいのだとすれば、それはテストコードがないから、処理に名前がついてないから
-const idConvertedUsers: UserForView[] = users.map((u: User) => {
-  const genderStr: string = genders.find((g: Gender) => g.id === u.gender)?.gender ?? '-'
-  return {...u, 'gender': genderStr}
-})
-console.log(idConvertedUsers)
+// TODO テストコードを書く
+const addGenderDetail = function (users: User[], genders: Gender[]): UserForView[] {
+  return users.map((u: User) => {
+    const genderStr: string = genders.find((g: Gender) => g.id === u.gender)?.gender ?? '-'
+    return {...u, 'gender': genderStr}
+  })
+}
+const addedUsers = addGenderDetail(users, genders)
+console.log(addedUsers);
 
+// const idConvertedUsers: UserForView[] = users.map((u: User) => {
+//   const genderStr: string = genders.find((g: Gender) => g.id === u.gender)?.gender ?? '-'
+//   return {...u, 'gender': genderStr}
+// })
+// console.log(idConvertedUsers)
+
+export { addGenderDetail };
